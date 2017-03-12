@@ -1,0 +1,9 @@
+#Paths to Ignore
+**/node_modules/*
+**/test/*
+build
+bin/*
+**/coverage/*
+**/docs/*
+tmp
+cache

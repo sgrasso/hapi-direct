@@ -1,0 +1,31 @@
+{
+  "name": "hapi-direct",
+  "version": "1.0.0",
+  "description": "Hapi route controller validator.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "posttest": "istanbul check-coverage --statement 80 --line 80 --branch 80 --function 80",
+    "lint": "eslint ./"
+  },
+  "keywords": [
+    "hapi",
+    "routes",
+    "preroute",
+    "controller"
+  ],
+  "author": "Sean Grasso <sean.grasso@gmail.com> (http://www.seangrasso.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "boom": "3.1.x"
+  },
+  "devDependencies": {
+    "eslint": "3.4.0",
+    "istanbul": "0.4.2",
+    "mocha": "2.4.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sgrasso/hapi-direct.git"
+  }
+}
