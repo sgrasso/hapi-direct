@@ -1,5 +1,11 @@
 # Hapi-Direct
 
+[![Travis](https://img.shields.io/travis/hapi-direct/hapi-direct.svg)]()
+[![Codecov](https://img.shields.io/codecov/c/github/codecov/hapi-direct.svg)]()
+[![npm](https://img.shields.io/npm/v/hapi-direct.svg)]()
+[![npm](https://img.shields.io/npm/dt/hapi-direct.svg)]()
+[![npm](https://img.shields.io/npm/l/hapi-direct.svg)]()
+
 Dynamic Hapi route handling through directory structure. Allowing you to create a single route to handle all requests and serve different controllers/handlers.
  
 ## Overview
@@ -32,10 +38,29 @@ The resulting handlers object is a flat path to handler object.  If this object 
 
 ```js
 {
-	plugin1/page1/: '/www/app/plugin1/page1/index.js',
-	plugin1/page2/: '/www/apps/plugin1/page2/index.js', 
-	plugin2/page1/: '/www/apps/plugin2/page1/index.js' 
+	plugin1/page1/: '/www/apps/plugin1/page1/index.js',
+	plugin1/page2/: '/www/apps/plugin1/page2/index.js'
 }
+```
+
+```
+//Example Directory Structure
+├── www/
+|	index.js
+|	package.json
+│   ├── app/
+│   │   ├── plugin/
+│   │   |	├── page1/
+│   │   |	│   ├── v0/
+|	│   │   |	│   ├── index.js
+|	│   │   |	│   ├── client.js
+│   │   |	│   ├── v1/
+|	│   │   |	│   ├── index.js
+|	│   │   |	│   ├── client.js
+│   │   |	├── page2/
+│   │   |	│   ├── v0/
+|	│   │   |	│   ├── index.js
+|	│   │   |	│   ├── client.js
 ```
 
 ### directRoute
@@ -53,3 +78,8 @@ server.route({
 	handler: server.methods.directRoute
 });
 ```
+
+## TODO
+* Tests
+* Publish
+* CI build
