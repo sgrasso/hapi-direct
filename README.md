@@ -7,7 +7,19 @@
 [![npm](https://img.shields.io/npm/l/hapi-direct.svg)]()
 
 Dynamic Hapi route handling through directory structure. Allowing you to create a single route to handle all requests and serve different controllers/handlers.
- 
+```
+npm install hapi-direct --save
+```
+
+``` js
+server.register({
+    register: require('hapi-direct'),
+    options: {}
+}, (err) => {
+    if (err) throw err;
+});
+```
+
 ## Overview
 
 Used to obtain the assigned handler for a plugin's requested route. `Request.path` is not used because its uniqueness may not be consistent. It performs two different checks in order to find a routes handler. 
