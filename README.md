@@ -6,7 +6,9 @@
 [![npm](https://img.shields.io/npm/dt/hapi-direct.svg)]()
 [![npm](https://img.shields.io/npm/l/hapi-direct.svg)]()
 
-Dynamic Hapi route handling through directory structure. Allowing you to create a single route to handle all requests and serve different controllers/handlers.
+Dynamic Hapi route handling through directory structure. Allowing you to create a single route to handle all requests and serve different controllers/handlers. Supports ability to version routes.
+
+## Install
 ```
 npm install hapi-direct --save
 ```
@@ -31,7 +33,7 @@ You have the ability to create versioned routes and still keep the URL path cons
 
 The application I work with makes use of a simple resource security module that speaks with a backend database to determine the feature versions I have access too. Of course if this value does not exist hapi-direct proceeds by checking without an appended version.
 
-## Methods
+## Use
 
 ### assignHandlers
 
@@ -50,8 +52,10 @@ The resulting handlers object is a flat path to handler object.  If this object 
 
 ```js
 {
-	plugin1/page1/: '/www/apps/plugin1/page1/index.js',
-	plugin1/page2/: '/www/apps/plugin1/page2/index.js'
+	plugin/page1/: '/www/apps/plugin1/page1/v0/index.js',
+	plugin/page1/: '/www/apps/plugin1/page1/v1/index.js',
+	plugin/page2/: '/www/apps/plugin1/page2/v0/index.js'
+	plugin/page3/: '/www/apps/plugin1/page3/index.js'
 }
 ```
 
@@ -71,6 +75,9 @@ The resulting handlers object is a flat path to handler object.  If this object 
 |	│   │   |	│   ├── client.js
 │   │   |	├── page2/
 │   │   |	│   ├── v0/
+|	│   │   |	│   ├── index.js
+|	│   │   |	│   ├── client.js
+│   │   |	├── page3/
 |	│   │   |	│   ├── index.js
 |	│   │   |	│   ├── client.js
 ```
