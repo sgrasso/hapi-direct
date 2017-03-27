@@ -1,10 +1,10 @@
 # Hapi-Direct
 
-[![Travis](https://img.shields.io/travis/sgrasso/hapi-direct.svg)]()
+[![Travis](https://img.shields.io/travis/sgrasso/hapi-direct.svg)](https://travis-ci.org/sgrasso/hapi-direct)
 [![Codecov](https://img.shields.io/codecov/c/github/sgrasso/hapi-direct.svg)](https://codecov.io/gh/sgrasso/hapi-direct)
-[![npm](https://img.shields.io/npm/v/hapi-direct.svg)]()
-[![npm](https://img.shields.io/npm/dt/hapi-direct.svg)]()
-[![npm](https://img.shields.io/npm/l/hapi-direct.svg)]()
+[![npm](https://img.shields.io/npm/v/hapi-direct.svg)](https://www.npmjs.com/package/hapi-direct)
+[![npm](https://img.shields.io/npm/dt/hapi-direct.svg)](https://www.npmjs.com/package/hapi-direct)
+[![npm](https://img.shields.io/npm/l/hapi-direct.svg)](https://www.npmjs.com/package/hapi-direct)
 
 Dynamic Hapi route handling through directory structure. Allowing you to create a single route to handle all requests and serve different controllers/handlers. Supports ability to version routes.
 
