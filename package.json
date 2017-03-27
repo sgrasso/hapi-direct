@@ -1,6 +1,6 @@
 {
   "name": "hapi-direct",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Dynamic Hapi route handling through directory structure",
   "main": "index.js",
   "scripts": {
