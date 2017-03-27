@@ -31,7 +31,7 @@ Used to obtain the assigned handler for a plugin's requested route. `Request.pat
 
 You have the ability to create versioned routes and still keep the URL path consistent.  The request.route.version is currently the location checked for versioned or A/B tested routes. For this to be successful you will need another method outside hapi-direct to set this value or A/B scenario. 
 
-The application I work with makes use of a simple resource security module that speaks with a backend database to determine the feature versions I have access too. Of course if this value does not exist hapi-direct proceeds by checking without an appended version.
+For example the an application I work with makes use of a simple resource security module that speaks with a backend database to determine the feature versions I have access too. Of course if this value does not exist hapi-direct proceeds by checking without an appended version.
 
 ## Use
 
@@ -47,15 +47,15 @@ Folders prefixed with `_` or `.` are ignored
 server.expose('handlers', server.methods.assignHandlers(__dirname));
 ```
 
-The resulting handlers object is a flat path to handler object.  If this object contains a lot of routes I would recommend that a caching solution such as Redis is used, rather than storing this in memory.
+The return result is a flat object of cached required handlers.  If this object contains a lot of routes I would recommend that a caching solution such as Redis is used, rather than storing this in memory.
 
 
 ```js
 {
-	plugin/page1/: '/www/apps/plugin1/page1/v0/index.js',
-	plugin/page1/: '/www/apps/plugin1/page1/v1/index.js',
-	plugin/page2/: '/www/apps/plugin1/page2/v0/index.js'
-	plugin/page3/: '/www/apps/plugin1/page3/index.js'
+	plugin/page1/v0: require('/www/apps/plugin/page1/v0/'),
+	plugin/page1/v1: require('/www/apps/plugin/page1/v1/)',
+	plugin/page2/v0: require('/www/apps/plugin/page2/v0/'),
+	plugin/page3/: require('/www/apps/plugin/page3/')
 }
 ```
 
@@ -86,8 +86,6 @@ The resulting handlers object is a flat path to handler object.  If this object 
 
 Takes the plugin of the requested route and determines if a handler exists for it or returns 404. The handler object that you previously populated and exposed during the plugin register is now checked against the `request.paramsArray` and `request.route.version` if present.
 
-`request.server.plugins[request.route.realm.plugin].handlers[];`
-
 Then you can execute this within the route handler as `server.methods.directRoute`.
 
 ``` js
@@ -97,8 +95,3 @@ server.route({
 	handler: server.methods.directRoute
 });
 ```
-
-## TODO
-* Tests
-* Publish
-* CI build

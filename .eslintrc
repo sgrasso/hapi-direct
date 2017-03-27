@@ -1,3 +1,47 @@
 {
-    "extends": "dt-base"
+    'extends': 'eslint:recommended',
+	'parserOptions': {
+		'ecmaVersion': 6
+	},
+	'rules': {
+		// enable additional rules
+		'no-template-curly-in-string': 'error',
+		'valid-jsdoc': 'error',
+		'block-scoped-var': 'error',
+		'default-case': 'error',
+		'eqeqeq': ['error', 'smart'],
+		'no-else-return': 'error',
+		'no-empty-function': 'error',
+		'no-eval': 'error',
+		'vars-on-top': 'error',
+		'strict': ['error', 'global'],
+		'no-shadow': 'error',
+		'no-use-before-define': 'error',
+		'brace-style': ['error', '1tbs'],
+		'camelcase': 'error',
+		'comma-dangle': ['error', 'never'],
+		'comma-spacing': ['error', {'before': false, 'after': true}],
+		'comma-style': ['error', 'last'],
+		'block-spacing': ['error', 'always'],
+		'func-call-spacing': ['error', 'never'],
+		'indent': ['error', 'tab'],
+		'keyword-spacing': ['error', {'before': true, 'after': true}],
+		'max-len': ['error', {'tabWidth': 1, 'code': 140}],
+		'no-bitwise': 'error',
+		'no-mixed-spaces-and-tabs': 'error',
+		'no-trailing-spaces': 'error',
+		'arrow-body-style': ['error', 'always'],
+		'arrow-parens': ['error', 'as-needed'],
+		'arrow-spacing': ['error', {'before': true, 'after': true}],
+		'no-nested-ternary': 'error',
+		'no-unneeded-ternary': 'error',
+		'quotes': ['error', 'single', { 'allowTemplateLiterals': true }]
+	},
+	'env': {
+		'node': true,
+		'es6': true,
+		'mocha': true,
+		'browser': true,
+		'jquery': true
+	}
 }

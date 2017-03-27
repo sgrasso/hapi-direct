@@ -4,8 +4,9 @@
   "description": "Dynamic Hapi route handling through directory structure",
   "main": "index.js",
   "scripts": {
-    "test": "npm test",
-    "posttest": "istanbul check-coverage --statement 90 --line 90 --branch 90 --function 90",
+    "test": "istanbul cover node_modules/mocha/bin/_mocha -- test -R spec",
+    "posttest": "istanbul check-coverage --statement 100 --line 100 --branch 100 --function 100",
+    "codecov": "codecov",
     "lint": "eslint ./"
   },
   "keywords": [
@@ -14,17 +15,29 @@
     "route",
     "routing",
     "handlers",
-    "controller"
+    "controller",
+    "plugin"
   ],
   "author": "Sean Grasso <sean.grasso@gmail.com> (http://www.seangrasso.com/)",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sgrasso/hapi-direct/issues"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "dependencies": {
     "boom": "3.1.x"
   },
   "devDependencies": {
-    "eslint": "3.4.x",
+    "chai": "3.x.x",
+    "hapi": "16.x.x",
+    "eslint": "3.x.x",
     "istanbul": "0.4.x",
-    "mocha": "2.4.x"
+    "mocha": "2.x.x"
+  },
+  "peerdependencies": {
+    "hapi": "16.x.x"
   },
   "repository": {
     "type": "git",

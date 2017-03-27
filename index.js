@@ -19,7 +19,7 @@ exports.register = (server, options, next) => {
 
 			() => {
 				try {
-					return request.server.plugins[request.route.realm.plugin].handlers[uriParams];
+					return request.server.plugins[request.route.realm.plugin].handlers[path.normalize(uriParams)];
 				} catch (e) {
 					return e;
 				}
@@ -28,7 +28,7 @@ exports.register = (server, options, next) => {
 
 		// Assign controller to route handler and continue
 		for (const resolver of resolutions){
-			let handler = resolver(), notFound = (handler instanceof Error);
+			let handler = resolver(), notFound = (handler instanceof Error || handler == null);
 			if (!notFound){
 				return handler(request, reply);
 			}
