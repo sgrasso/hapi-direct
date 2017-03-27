@@ -6,7 +6,7 @@
   "scripts": {
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- test -R spec",
     "posttest": "istanbul check-coverage --statement 100 --line 100 --branch 100 --function 100",
-    "codecov": "codecov",
+    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && codecov",
     "lint": "eslint ./"
   },
   "keywords": [
@@ -31,8 +31,9 @@
   },
   "devDependencies": {
     "chai": "3.x.x",
-    "hapi": "16.x.x",
+    "codecov": "^2.1.0",
     "eslint": "3.x.x",
+    "hapi": "16.x.x",
     "istanbul": "0.4.x",
     "mocha": "2.x.x"
   },

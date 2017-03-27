@@ -1,6 +1,6 @@
 # Hapi-Direct
 
-[![Travis](https://img.shields.io/travis/hapi-direct/hapi-direct.svg)]()
+[![Travis](https://img.shields.io/travis/sgrasso/hapi-direct.svg)]()
 [![Codecov](https://img.shields.io/codecov/c/github/codecov/hapi-direct.svg)]()
 [![npm](https://img.shields.io/npm/v/hapi-direct.svg)]()
 [![npm](https://img.shields.io/npm/dt/hapi-direct.svg)]()
