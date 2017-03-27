@@ -2,6 +2,7 @@
 
 const expect = require('chai').expect;
 const Hapi = require('hapi');
+const path = require('path');
 
 describe('hapi-direct', () => {
 
@@ -45,7 +46,7 @@ describe('hapi-direct', () => {
 		thisServer.register([{register: require('../index.js')}, {register: testPlugin}], function(e){
 			thisServer.initialize(function(err) {
 				if (err) throw err;
-				expect(thisServer.plugins['testPlugin'].handlers).itself.have.property('\\testDir\\v0');
+				expect(thisServer.plugins['testPlugin'].handlers).itself.have.property(path.normalize('/testDir/v0'));
 				done();
 			});
 		});
