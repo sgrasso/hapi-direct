@@ -1,6 +1,6 @@
 {
   "name": "hapi-direct",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Dynamic Hapi route handling through directory structure",
   "main": "index.js",
   "scripts": {
@@ -27,12 +27,12 @@
     "node": ">=4.0.0"
   },
   "dependencies": {
-    "boom": "3.1.x"
+    "boom": "5.2.x"
   },
   "devDependencies": {
     "chai": "3.x.x",
     "codecov": "^2.1.0",
-    "eslint": "3.x.x",
+    "eslint": "4.x.x",
     "hapi": "16.x.x",
     "istanbul": "0.4.x",
     "mocha": "2.x.x"
