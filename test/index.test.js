@@ -150,7 +150,7 @@ describe('hapi-direct', () => {
 		const testPlugin = function (srv, options, next) {
 			srv.expose('handlers', srv.methods.assignHandlers(__dirname));
 			srv.route({
-				path: '/',
+				path: '/{path*}',
 				method: 'GET',
 				handler: srv.methods.directRoute
 			});
@@ -166,7 +166,7 @@ describe('hapi-direct', () => {
 		thisServer.register([{register: require('../index.js')}, {register: testPlugin}], function(e){
 			thisServer.initialize(function(err) {
 				if (err) throw err;
-				thisServer.inject({url: '/'}, (request, reply) => {
+				thisServer.inject({url: '/foo'}, (request, reply) => {
 					expect(request.statusCode).to.equal(404);
 					done();
 				});
@@ -197,6 +197,35 @@ describe('hapi-direct', () => {
 				thisServer.inject({url: '/testDir/v0'}, (request, reply) => {
 					expect(request.statusCode).to.equal(404);
 					// expect(request.result).to.equal('test controller file - V0');
+					done();
+				});
+			});
+		});
+	});
+
+	it('Call to directRoute with valid route but path is multiple directories deep', function(done) {
+		const thisServer = new Hapi.Server();
+		const testPlugin = function (srv, options, next) {
+			srv.expose('handlers', srv.methods.assignHandlers(__dirname));
+			srv.route({
+				path: '/{path*}',
+				method: 'GET',
+				handler: srv.methods.directRoute
+			});
+			return next();
+		};
+
+		testPlugin.attributes = {
+			name: 'testPlugin'
+		};
+		
+		thisServer.connection({ port: 8006});
+
+		thisServer.register([{register: require('../index.js')}, {register: testPlugin}], function(e){
+			thisServer.initialize(function(err) {
+				if (err) throw err;
+				thisServer.inject({url: '/testDir/test1/v0'}, (request, reply) => {
+					expect(request.statusCode).to.equal(200);
 					done();
 				});
 			});
