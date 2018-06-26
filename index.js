@@ -3,38 +3,49 @@
 const fs = require('fs');
 const path = require('path');
 const boom = require('boom');
+const async = require('async');
 
 exports.register = (server, options, next) => {
 
 	server.method('directRoute', (request, reply) => {
-		const uriParams = (request.paramsArray.length > 0) ? '/' + request.paramsArray.join('/') : '';
-		const resolutions = [
-			() => {
-				try {
-					return request.server.plugins[request.route.realm.plugin].handlers[path.join(uriParams, request.route.version)];
-				} catch (e) {
-					return e;
-				}
-			},
 
-			() => {
-				try {
-					return request.server.plugins[request.route.realm.plugin].handlers[path.normalize(uriParams)];
-				} catch (e) {
-					return e;
-				}
-			}
-		];
+		const uriParams = (request.paramsArray.length > 0) ? '/' + request.paramsArray.join('/') : '';
 
 		// Assign controller to route handler and continue
-		for (const resolver of resolutions){
-			let handler = resolver(), notFound = (handler instanceof Error || handler == null);
-			if (!notFound){
-				return handler(request, reply);
-			}
-		}
+		async.tryEach([
+			function(cb) {
+				try {
+					let handler = request.server.plugins[request.route.realm.plugin].handlers[path.join(uriParams, request.route.version)];
 
-		return reply(boom.notFound('Not Found'));
+					if (handler && !(handler instanceof Error)) {
+						return cb(null, handler);
+					}
+
+					return cb('Not Found');
+				} catch (e) {
+					return cb(e);
+				}
+			},
+			function(cb) {
+				try {
+					let handler = request.server.plugins[request.route.realm.plugin].handlers[path.normalize(uriParams)];
+
+					if (handler && !(handler instanceof Error)) {
+						return cb(null, handler);
+					}
+
+					return cb('Not Found');
+				} catch (e) {
+					return cb(e);
+				}
+			}
+		],
+		function(e, result){
+			if (e) {
+				return reply(boom.notFound('Not Found'));
+			}
+			return result(request, reply);
+		})
 	});
 
 	server.method('assignHandlers', basePath => {
@@ -59,7 +70,7 @@ exports.register = (server, options, next) => {
 		return getHandlers(basePath);
 	});
 
-	next();
+	return next();
 };
 
 exports.register.attributes = {
