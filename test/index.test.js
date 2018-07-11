@@ -111,7 +111,7 @@ describe('hapi-direct', () => {
 		});
 	});
 
-	it('Call to directRoute does find an assigned route handler with set request.route.version, return 200', function(done) {
+	it('Call to directRoute does find an assigned route handler with set request.app.routeVersion, return 200', function(done) {
 		const thisServer = new Hapi.Server();
 		const testPlugin = function (srv, options, next) {
 			srv.expose('handlers', srv.methods.assignHandlers(__dirname));
@@ -121,7 +121,7 @@ describe('hapi-direct', () => {
 				handler: srv.methods.directRoute
 			});
 			srv.ext('onPreHandler', (req, rep) => {
-				req.route.version = 'v1';
+				req.app.routeVersion = 'v1';
 				rep.continue();
 			});
 			return next();
@@ -145,7 +145,7 @@ describe('hapi-direct', () => {
 		});
 	});
 
-	it('Call to directRoute does not find an assigned route handler with set request.route.version, return 404', function(done) {
+	it('Call to directRoute does not find an assigned route handler with set request.app.routeVersion, return 404', function(done) {
 		const thisServer = new Hapi.Server();
 		const testPlugin = function (srv, options, next) {
 			srv.expose('handlers', srv.methods.assignHandlers(__dirname));
@@ -155,7 +155,7 @@ describe('hapi-direct', () => {
 				handler: srv.methods.directRoute
 			});
 			srv.ext('onPreHandler', (req, rep) => {
-				req.route.version = 'v2';
+				req.app.routeVersion = 'v2';
 				rep.continue();
 			});
 			return next();

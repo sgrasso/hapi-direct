@@ -15,7 +15,7 @@ exports.register = (server, options, next) => {
 		async.tryEach([
 			function(cb) {
 				try {
-					let handler = request.server.plugins[request.route.realm.plugin].handlers[path.join(uriParams, request.route.version)];
+					let handler = request.server.plugins[request.route.realm.plugin].handlers[path.join(uriParams, request.app.routeVersion)];
 
 					if (handler && !(handler instanceof Error)) {
 						return cb(null, handler);
@@ -42,6 +42,7 @@ exports.register = (server, options, next) => {
 		],
 		function(e, result){
 			if (e) {
+				console.log(request.server.plugins[request.route.realm.plugin])
 				return reply(boom.notFound('Not Found'));
 			}
 			return result(request, reply);
