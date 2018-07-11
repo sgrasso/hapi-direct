@@ -42,7 +42,6 @@ exports.register = (server, options, next) => {
 		],
 		function(e, result){
 			if (e) {
-				console.log(request.server.plugins[request.route.realm.plugin])
 				return reply(boom.notFound('Not Found'));
 			}
 			return result(request, reply);
