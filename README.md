@@ -26,10 +26,10 @@ server.register({
 
 Used to obtain the assigned handler for a plugin's requested route. `Request.path` is not used because its uniqueness may not be consistent. It performs two different checks in order to find a routes handler. 
 
-1. plugin name + request.paramsArray + request.route.version
+1. plugin name + request.paramsArray + request.app.requestVersion
 2. plugin name + request.paramsArray
 
-You have the ability to create versioned routes and still keep the URL path consistent.  The request.route.version is currently the location checked for versioned or A/B tested routes. For this to be successful you will need another method outside hapi-direct to set this value or A/B scenario. 
+You have the ability to create versioned routes and still keep the URL path consistent.  The request.app.routeVersion is currently the location checked for versioned or A/B tested routes. For this to be successful you will need another method outside hapi-direct to set this value or A/B scenario. 
 
 For example the an application I work with makes use of a simple resource security module that speaks with a backend database to determine the feature versions I have access too. Of course if this value does not exist hapi-direct proceeds by checking without an appended version.
 
@@ -84,7 +84,7 @@ The return result is a flat object of cached required handlers.  If this object 
 
 ### directRoute
 
-Takes the plugin of the requested route and determines if a handler exists for it or returns 404. The handler object that you previously populated and exposed during the plugin register is now checked against the `request.paramsArray` and `request.route.version` if present.
+Takes the plugin of the requested route and determines if a handler exists for it or returns 404. The handler object that you previously populated and exposed during the plugin register is now checked against the `request.paramsArray` and `request.app.routeVersion` if present.
 
 Then you can execute this within the route handler as `server.methods.directRoute`.
 
