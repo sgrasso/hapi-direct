@@ -14,12 +14,15 @@ npm install hapi-direct --save
 ```
 
 ``` js
-server.register({
-    register: require('hapi-direct'),
-    options: {}
-}, (err) => {
-    if (err) throw err;
-});
+const start = async function () {
+
+	await server.register({
+		plugin: require('hapi-direct'),
+		options: {}
+	}, (err) => {
+		if (err) throw err;
+	});
+};
 ```
 
 ## Overview

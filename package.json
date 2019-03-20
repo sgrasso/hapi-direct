@@ -1,12 +1,12 @@
 {
   "name": "hapi-direct",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Dynamic Hapi route handling through directory structure",
   "main": "index.js",
   "scripts": {
-    "test": "istanbul cover node_modules/mocha/bin/_mocha -- test -R spec",
-    "posttest": "istanbul check-coverage --statement 100 --line 100 --branch 100 --function 100",
-    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && codecov",
+    "test": "nyc node_modules/mocha/bin/_mocha -- test -R spec",
+    "posttest": "nyc check-coverage --statement 100 --line 100 --branch 100 --function 100",
+    "coverage": "nyc ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && codecov",
     "lint": "eslint ./"
   },
   "keywords": [
@@ -24,22 +24,21 @@
     "url": "https://github.com/sgrasso/hapi-direct/issues"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=6.0.0"
   },
   "dependencies": {
-    "async": "^2.6.1",
-    "boom": "5.2.x"
+    "boom": "^7.3.0"
   },
   "devDependencies": {
-    "chai": "3.x.x",
-    "codecov": "^2.1.0",
-    "eslint": "4.x.x",
-    "hapi": "16.x.x",
-    "istanbul": "0.4.x",
-    "mocha": "2.x.x"
+    "chai": "^4.2.0",
+    "codecov": "^3.2.0",
+    "eslint": "^5.14.1",
+    "hapi": "18.x.x",
+    "mocha": "^6.0.0",
+    "nyc": "^13.3.0"
   },
   "peerdependencies": {
-    "hapi": "16.x.x"
+    "hapi": "18.x.x"
   },
   "repository": {
     "type": "git",
