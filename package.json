@@ -1,6 +1,6 @@
 {
   "name": "hapi-direct",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Dynamic Hapi route handling through directory structure",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
     "url": "https://github.com/sgrasso/hapi-direct/issues"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.0.0"
   },
   "dependencies": {
     "boom": "^7.3.0"
@@ -34,7 +34,7 @@
     "codecov": "^3.2.0",
     "eslint": "^5.14.1",
     "hapi": "18.x.x",
-    "mocha": "^6.0.0",
+    "mocha": "^6.2.0",
     "nyc": "^13.3.0"
   },
   "peerdependencies": {
